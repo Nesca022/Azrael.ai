@@ -126,4 +126,126 @@ window.addEventListener('resize', () => {
         }
         document.querySelector('.nav-links').classList.remove('active');
     }
+});
+
+// Image Enhancer Functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const uploadArea = document.querySelector('.upload-area');
+    const fileInput = document.createElement('input');
+    fileInput.type = 'file';
+    fileInput.accept = 'image/*';
+    fileInput.style.display = 'none';
+
+    // Handle drag and drop
+    uploadArea.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        uploadArea.style.borderColor = 'var(--accent-color)';
+    });
+
+    uploadArea.addEventListener('dragleave', () => {
+        uploadArea.style.borderColor = 'var(--secondary-color)';
+    });
+
+    uploadArea.addEventListener('drop', (e) => {
+        e.preventDefault();
+        uploadArea.style.borderColor = 'var(--secondary-color)';
+        const file = e.dataTransfer.files[0];
+        if (file && file.type.startsWith('image/')) {
+            handleImageUpload(file);
+        }
+    });
+
+    // Handle click to upload
+    uploadArea.addEventListener('click', () => {
+        fileInput.click();
+    });
+
+    fileInput.addEventListener('change', (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            handleImageUpload(file);
+        }
+    });
+
+    // Handle image upload
+    function handleImageUpload(file) {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            const originalPreview = document.querySelector('.preview-original img');
+            originalPreview.src = e.target.result;
+            originalPreview.style.display = 'block';
+            
+            // Show preview section
+            document.querySelector('.enhancer-preview').style.display = 'block';
+            
+            // Enable enhance button
+            const enhanceButton = document.querySelector('.enhance-button');
+            enhanceButton.disabled = false;
+            enhanceButton.style.opacity = '1';
+        };
+        reader.readAsDataURL(file);
+    }
+
+    // Handle enhance button click
+    const enhanceButton = document.querySelector('.enhance-button');
+    enhanceButton.addEventListener('click', async () => {
+        const originalImage = document.querySelector('.preview-original img');
+        const enhancedPreview = document.querySelector('.preview-enhanced img');
+        
+        // Show loading state
+        enhanceButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enhancing...';
+        enhanceButton.disabled = true;
+
+        try {
+            // Here you would typically make an API call to your image enhancement service
+            // For now, we'll simulate the enhancement with a delay
+            await new Promise(resolve => setTimeout(resolve, 2000));
+            
+            // Simulate enhanced image (in reality, this would come from your API)
+            enhancedPreview.src = originalImage.src;
+            enhancedPreview.style.display = 'block';
+            
+            // Enable download and share buttons
+            document.querySelector('.download-button').disabled = false;
+            document.querySelector('.share-button').disabled = false;
+        } catch (error) {
+            console.error('Error enhancing image:', error);
+            alert('Failed to enhance image. Please try again.');
+        } finally {
+            // Reset enhance button
+            enhanceButton.innerHTML = '<i class="fas fa-magic"></i> Enhance Image';
+            enhanceButton.disabled = false;
+        }
+    });
+
+    // Handle download button click
+    document.querySelector('.download-button').addEventListener('click', () => {
+        const enhancedImage = document.querySelector('.preview-enhanced img');
+        const link = document.createElement('a');
+        link.download = 'enhanced-image.png';
+        link.href = enhancedImage.src;
+        link.click();
+    });
+
+    // Handle share button click
+    document.querySelector('.share-button').addEventListener('click', async () => {
+        const enhancedImage = document.querySelector('.preview-enhanced img');
+        try {
+            if (navigator.share) {
+                await navigator.share({
+                    title: 'Enhanced Image',
+                    text: 'Check out this enhanced image!',
+                    url: enhancedImage.src
+                });
+            } else {
+                // Fallback for browsers that don't support Web Share API
+                const link = document.createElement('a');
+                link.href = enhancedImage.src;
+                link.target = '_blank';
+                link.click();
+            }
+        } catch (error) {
+            console.error('Error sharing image:', error);
+        }
+    });
 }); 
