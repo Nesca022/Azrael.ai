@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Azrael.ai - Hyper-Realistic AI Image Generation</title>
+    <title>Azrael.ai - AI Image Generation & Enhancement</title>
     <link rel="stylesheet" href="./styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
@@ -12,6 +12,7 @@
         <div class="logo">Azrael.ai</div>
         <div class="nav-links">
             <a href="#features">Features</a>
+            <a href="#enhancer">Enhancer</a>
             <a href="#gallery">Gallery</a>
             <a href="#pricing">Pricing</a>
             <a href="#contact">Contact</a>
@@ -21,11 +22,11 @@
 
     <header class="hero">
         <div class="hero-content">
-            <h1>Transform Your Imagination into Reality</h1>
-            <p>Experience the next generation of AI image generation with unprecedented realism and detail</p>
+            <h1>Create & Enhance Images with AI</h1>
+            <p>Transform your ideas into stunning visuals with our advanced AI image generation and enhancement technology</p>
             <div class="hero-buttons">
                 <button class="primary-button">Start Creating</button>
-                <button class="secondary-button">View Gallery</button>
+                <button class="secondary-button">Try Enhancer</button>
             </div>
         </div>
         <div class="hero-image">
@@ -37,24 +38,88 @@
         <h2>Why Choose Azrael.ai?</h2>
         <div class="feature-grid">
             <div class="feature-card">
-                <i class="fas fa-camera"></i>
-                <h3>Photorealistic Quality</h3>
-                <p>Generate images that are indistinguishable from real photographs</p>
+                <i class="fas fa-magic"></i>
+                <h3>AI-Powered Generation</h3>
+                <p>Create unique images from text descriptions using state-of-the-art AI models</p>
             </div>
             <div class="feature-card">
-                <i class="fas fa-bolt"></i>
-                <h3>Lightning Fast</h3>
-                <p>Get your images in seconds with our optimized AI engine</p>
+                <i class="fas fa-image"></i>
+                <h3>Image Enhancement</h3>
+                <p>Enhance and upscale your images with advanced AI algorithms</p>
             </div>
             <div class="feature-card">
                 <i class="fas fa-paint-brush"></i>
-                <h3>Advanced Control</h3>
-                <p>Fine-tune every aspect of your generated images</p>
+                <h3>Style Transfer</h3>
+                <p>Apply artistic styles and effects to your images instantly</p>
             </div>
             <div class="feature-card">
                 <i class="fas fa-shield-alt"></i>
-                <h3>Enterprise Ready</h3>
-                <p>Secure, scalable, and ready for professional use</p>
+                <h3>Secure & Private</h3>
+                <p>Your images and data are protected with enterprise-grade security</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="enhancer" class="enhancer">
+        <h2>AI Image Enhancer</h2>
+        <div class="enhancer-container">
+            <div class="enhancer-upload">
+                <div class="upload-area" id="dropZone">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                    <h3>Drag & Drop or Click to Upload</h3>
+                    <p>Supported formats: JPG, PNG, WEBP</p>
+                    <input type="file" id="fileInput" accept="image/*" hidden>
+                </div>
+            </div>
+            <div class="enhancer-controls">
+                <div class="control-group">
+                    <label>Resolution</label>
+                    <select id="resolution">
+                        <option value="1x">1x (Original)</option>
+                        <option value="2x">2x</option>
+                        <option value="4x">4x</option>
+                        <option value="8x">8x</option>
+                    </select>
+                </div>
+                <div class="control-group">
+                    <label>Quality</label>
+                    <select id="quality">
+                        <option value="standard">Standard</option>
+                        <option value="high">High</option>
+                        <option value="ultra">Ultra</option>
+                    </select>
+                </div>
+                <div class="control-group">
+                    <label>Style</label>
+                    <select id="style">
+                        <option value="natural">Natural</option>
+                        <option value="enhanced">Enhanced</option>
+                        <option value="artistic">Artistic</option>
+                    </select>
+                </div>
+                <button class="enhance-button" id="enhanceBtn">
+                    <i class="fas fa-magic"></i> Enhance Image
+                </button>
+            </div>
+            <div class="enhancer-preview">
+                <div class="preview-container">
+                    <div class="preview-original">
+                        <h4>Original</h4>
+                        <img id="originalPreview" src="https://via.placeholder.com/400x400" alt="Original Image">
+                    </div>
+                    <div class="preview-enhanced">
+                        <h4>Enhanced</h4>
+                        <img id="enhancedPreview" src="https://via.placeholder.com/400x400" alt="Enhanced Image">
+                    </div>
+                </div>
+                <div class="preview-actions">
+                    <button class="download-button" id="downloadBtn">
+                        <i class="fas fa-download"></i> Download
+                    </button>
+                    <button class="share-button" id="shareBtn">
+                        <i class="fas fa-share-alt"></i> Share
+                    </button>
+                </div>
             </div>
         </div>
     </section>
@@ -65,22 +130,22 @@
             <div class="gallery-item">
                 <img src="https://via.placeholder.com/400x400" alt="AI Generated Image 1">
                 <div class="gallery-overlay">
-                    <h3>Urban Landscape</h3>
-                    <p>Created by @artist123</p>
+                    <h3>Cyberpunk City</h3>
+                    <p>Created with Azrael.ai</p>
                 </div>
             </div>
             <div class="gallery-item">
                 <img src="https://via.placeholder.com/400x400" alt="AI Generated Image 2">
                 <div class="gallery-overlay">
-                    <h3>Portrait Series</h3>
-                    <p>Created by @photographer456</p>
+                    <h3>Fantasy Portrait</h3>
+                    <p>Created with Azrael.ai</p>
                 </div>
             </div>
             <div class="gallery-item">
                 <img src="https://via.placeholder.com/400x400" alt="AI Generated Image 3">
                 <div class="gallery-overlay">
-                    <h3>Nature Scene</h3>
-                    <p>Created by @designer789</p>
+                    <h3>Abstract Art</h3>
+                    <p>Created with Azrael.ai</p>
                 </div>
             </div>
         </div>
